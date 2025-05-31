@@ -39,3 +39,5 @@ yarn-error.log*
 Database
 Server/lawsnote_project/log/CNN.log
 Server/controllers/lawsnote_project/data/formal_test.json
+
+./data

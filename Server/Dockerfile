@@ -23,8 +23,9 @@ WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json and install
 COPY package*.json ./
-RUN npm install -g nodemon
-RUN npm install
+RUN npm install -g nodemon cross-env
+RUN npm ci
+RUN npm install --production 
 
 # Install Python venv and pip (Note: this might be optional since we installed Python 3.11 already)
 RUN python3 -m ensurepip && \

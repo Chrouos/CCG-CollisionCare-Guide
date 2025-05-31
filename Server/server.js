@@ -13,7 +13,7 @@ app.use(express.json()); // Parse the JSON request body
 // -------------------- Server Settings
 const port = configCrypto.config.PORT || 8280;
 let hostname = configCrypto.config.HOSTNAME || 'localhost';
-const uri = configCrypto.config.MONGODB_URL || 'mongodb://localhost:27027';
+const uri = configCrypto.config.MONGODB_URL || 'mongodb://localhost:27017';
 
 // -------------------- routers list
 const pythonRouter = require('./routers/PythonRouter');

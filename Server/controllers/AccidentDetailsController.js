@@ -88,7 +88,7 @@ exports.retrievalContent = async (req, res) => {
             
             const firstMessages = [ { "role": "system", "content": firstPrompt } ]
             const gptResponse = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo-1106",
+                model: "gpt-4o-mini",
                 response_format: { type: "json_object" },
                 messages: firstMessages,
                 temperature: 0.01,
@@ -126,7 +126,7 @@ exports.retrievalContent = async (req, res) => {
 
             tidyMessage = [{ "role": "system", "content": tidyPrompt }]
             const gptResponse = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo-1106",
+                model: "gpt-4o-mini",
                 response_format: { type: "json_object" },
                 messages: tidyMessage,
                 temperature: 0.01,
@@ -156,7 +156,7 @@ exports.retrievalContent = async (req, res) => {
 
         const questionMessage = [ { "role": "system", "content": questionprompt }, ]
         const gptResponse = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-4o-mini",
             messages: questionMessage,
             temperature: 0.5,
             max_tokens: 1024,
@@ -269,7 +269,7 @@ exports.refactorEvent = async (req, res) => {
         console.log("refactorEventPrompt : ", refactorEventPrompt);
         
         const gptResponse = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-4o-mini",
             messages: happenedMessage,
             temperature: 0.1,
             max_tokens: 2048,
@@ -331,7 +331,7 @@ exports.litigantAgent = async (req, res) => {
         ]
 
         const gptResponse = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-4o-mini",
             messages: message,
             temperature: 0.1,
             max_tokens: 1024,

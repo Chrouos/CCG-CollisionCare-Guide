@@ -52,7 +52,7 @@ def insert_database(collection, fileName="converted_test_event.json"):
             ids_counts += 1
 
 
-chroma_client = chromadb.HttpClient(host="140.115.54.58", port=8000)
+chroma_client = chromadb.HttpClient(host="localhost", port=8000)
 collection = chroma_client.get_or_create_collection(name="Traffic_Advisory_Final")
 
 # converted_json()

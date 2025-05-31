@@ -7,8 +7,12 @@ services:
     ports:
       - "8280:8280"
     container_name: carash-server
-    volumes:
-      - ./Server:/usr/src/app
+    networks:
+      - nginx_proxy
+      - backend_network
+    # volumes:
+    #   - ./Server:/usr/src/app
+    restart: always
 
   carash-client:
     build: 
@@ -17,16 +21,26 @@ services:
     ports:
       - "8230:8230"
     container_name: carash-client
+    networks:
+      - nginx_proxy
+      - backend_network
+    restart: always
 
-  nginx:
-    image: nginx:latest
+  mongodb:
+    image: mongo:6.0
+    container_name: ccg-mongodb
     ports:
-      - "8080:80"   # 將 Nginx 的 80 端口映射到主機的 8080 端口
-      - "8443:443"  # HTTPS
+      - "27017:27017"
+    command: mongod --auth 
     volumes:
-      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
-      - ./ssl:/etc/nginx/ssl
-    depends_on:
-      - carash-server
-      - carash-client
-    container_name: nginx-proxy
+      - ./data:/data/db
+    networks:
+      - nginx_proxy
+      - backend_network
+    restart: always
+
+networks:
+  nginx_proxy:
+    external: true
+  backend_network:
+    internal: true
